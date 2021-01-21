@@ -29,12 +29,14 @@
               "status": "Valid"
             }
           ],
+          "recoveryPointMoveReadinessInfo": {
+            "ArchivedRP": {
+              "isReadyForMove": true
+            }
+          },
           "isManagedVirtualMachine": true,
           "virtualMachineSize": "Standard_D1",
-          "originalStorageAccountOption": false,
-          "zones": [
-            "1"
-          ]
+          "originalStorageAccountOption": false
         }
       }
     }
