@@ -3063,6 +3063,689 @@
           }
         }
       }
+    },
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupAadProperties/default": {
+      "get": {
+        "tags": [
+          "AadProperties"
+        ],
+        "summary": "Fetches the AAD properties from target region BCM stamp.",
+        "operationId": "AadProperties_Get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/AzureRegion"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AADPropertiesResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get AAD Properties for authentication in the third region": {
+            "$ref": "./examples/AzureIaasVm/BackupAadProperties_Get.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupCrossRegionRestore": {
+      "post": {
+        "tags": [
+          "CrossRegionRestore"
+        ],
+        "summary": "Restores the specified backed up data in a different region as compared to where the data is backed up.",
+        "operationId": "CrossRegionRestore_Trigger",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/AzureRegion"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "resource cross region restore request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CrossRegionRestoreRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "202": {
+            "description": "Accepted"
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true,
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "azure-async-operation"
+        },
+        "x-ms-examples": {
+          "Trigger Cross Region Restore": {
+            "$ref": "./examples/AzureIaasVm/TriggerCrossRegionRestore_Post.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupCrrJob": {
+      "post": {
+        "tags": [
+          "CrrJobDetails"
+        ],
+        "summary": "Get CRR job details from target region.",
+        "operationId": "BackupCrrJobDetails_Get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/AzureRegion"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "CRR Job request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CrrJobRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JobResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Cross Region Restore Job Details in the secondary region": {
+            "$ref": "./examples/AzureIaasVm/GetCrrJob_Post.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupCrrJobs": {
+      "post": {
+        "tags": [
+          "BackupCrrJobs"
+        ],
+        "summary": "Gets the list of CRR jobs from the target region.",
+        "operationId": "BackupCrrJobs_List",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/AzureRegion"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "Backup CRR Job request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CrrJobRequest"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "OData filter options.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$skipToken",
+            "in": "query",
+            "description": "skipToken Filter.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JobResourceList"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-odata": "#/definitions/JobQueryObject",
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-examples": {
+          "List Cross Region Restore Jobs in the secondary region": {
+            "$ref": "./examples/AzureIaasVm/ListCrrJobs_Post.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupCrrOperationResults/{operationId}": {
+      "get": {
+        "tags": [
+          "CrrOperationResults"
+        ],
+        "operationId": "CrrOperationResults_Get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/AzureRegion"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "operationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "202": {
+            "description": "Accepted"
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true,
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "azure-async-operation"
+        },
+        "x-ms-examples": {
+          "Get Operation Results for Cross Region Restore": {
+            "$ref": "./examples/AzureIaasVm/GetCrrOperationResults_Get.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupCrrOperationsStatus/{operationId}": {
+      "get": {
+        "tags": [
+          "CrrOperationStatus"
+        ],
+        "operationId": "CrrOperationStatus_Get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/AzureRegion"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "operationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/OperationStatus"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Operation Status for Cross Region Restore": {
+            "$ref": "./examples/AzureIaasVm/GetCrrOperationStatus_Get.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}/accessToken": {
+      "post": {
+        "tags": [
+          "RecoveryPoints_GetAccessToken"
+        ],
+        "summary": "Returns the Access token for communication between BMS and Protection service",
+        "operationId": "RecoveryPoints_GetAccessToken",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/VaultName"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "fabricName",
+            "in": "path",
+            "description": "Fabric name associated with the container.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "containerName",
+            "in": "path",
+            "description": "Name of the container.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "protectedItemName",
+            "in": "path",
+            "description": "Name of the Protected Item.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recoveryPointId",
+            "in": "path",
+            "description": "Recovery Point Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "Get Access Token request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AADPropertiesResource"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CrrAccessTokenResource"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Access Token for Crr": {
+            "$ref": "./examples/AzureIaasVm/GetAccessToken_Get.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupstorageconfig/vaultstorageconfig": {
+      "get": {
+        "tags": [
+          "BackupResourceStorageConfigs"
+        ],
+        "description": "Fetches resource storage config.",
+        "operationId": "BackupResourceStorageConfigs_Get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/VaultName"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BackupResourceConfigResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Vault Storage Configuration": {
+            "$ref": "./examples/Common/BackupStorageConfig_Get.json"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BackupResourceStorageConfigs"
+        ],
+        "description": "Updates vault storage model type.",
+        "operationId": "BackupResourceStorageConfigs_Update",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/VaultName"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "Vault storage config request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BackupResourceConfigResource"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BackupResourceConfigResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Update Vault Storage Configuration": {
+            "$ref": "./examples/Common/BackupStorageConfig_Put.json"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "BackupResourceStorageConfigs"
+        ],
+        "description": "Updates vault storage model type.",
+        "operationId": "BackupResourceStorageConfigs_patch",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/VaultName"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "Vault storage config request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BackupResourceConfigResource"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NoContent"
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Update Vault Storage Configuration": {
+            "$ref": "./examples/Common/BackupStorageConfig_Patch.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/": {
+      "get": {
+        "tags": [
+          "RecoveryPoints_Crr"
+        ],
+        "description": "Lists the backup copies for the backed up item.",
+        "operationId": "RecoveryPointsCrr_List",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/VaultName"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "fabricName",
+            "in": "path",
+            "description": "Fabric name associated with the backed up item.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "containerName",
+            "in": "path",
+            "description": "Container name associated with the backed up item.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "protectedItemName",
+            "in": "path",
+            "description": "Backed up item whose backup copies are to be fetched.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "OData filter options.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RecoveryPointResourceList"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-odata": "#/definitions/BMSRPQueryObject",
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-examples": {
+          "Get Protected Azure Vm Recovery Points": {
+            "$ref": "./examples/AzureIaasVm/RecoveryPoints_List.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupProtectedItems/": {
+      "get": {
+        "tags": [
+          "BackupProtectedItems_Crr"
+        ],
+        "description": "Provides a pageable list of all items that are backed up within a vault.",
+        "operationId": "BackupProtectedItemsCrr_List",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersion"
+          },
+          {
+            "$ref": "#/parameters/VaultName"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionId"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "OData filter options.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$skipToken",
+            "in": "query",
+            "description": "skipToken Filter.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProtectedItemResourceList"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/NewErrorResponse"
+            }
+          }
+        },
+        "x-ms-odata": "#/definitions/ProtectedItemQueryObject",
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-examples": {
+          "List protected items with backupManagementType filter as AzureIaasVm": {
+            "$ref": "./examples/AzureIaasVm/BackupProtectedItems_List.json"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -9503,6 +10186,351 @@
           }
         }
       }
+    },
+    "AADProperties": {
+      "type": "object",
+      "properties": {
+        "servicePrincipalClientId": {
+          "type": "string"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "servicePrincipalObjectId": {
+          "type": "string"
+        }
+      }
+    },
+    "AADPropertiesResource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/AADProperties",
+          "description": "AADPropertiesResource properties"
+        }
+      }
+    },
+    "BackupResourceConfig": {
+      "description": "The resource storage details.",
+      "type": "object",
+      "properties": {
+        "storageModelType": {
+          "description": "Storage type",
+          "enum": [
+            "Invalid",
+            "GeoRedundant",
+            "LocallyRedundant",
+            "ZoneRedundant",
+            "ReadAccessGeoZoneRedundant"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "StorageType",
+            "modelAsString": true
+          }
+        },
+        "storageType": {
+          "description": "Storage type.",
+          "enum": [
+            "Invalid",
+            "GeoRedundant",
+            "LocallyRedundant",
+            "ZoneRedundant",
+            "ReadAccessGeoZoneRedundant"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "StorageType",
+            "modelAsString": true
+          }
+        },
+        "storageTypeState": {
+          "description": "Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked.",
+          "enum": [
+            "Invalid",
+            "Locked",
+            "Unlocked"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "StorageTypeState",
+            "modelAsString": true
+          }
+        },
+        "crossRegionRestoreFlag": {
+          "description": "Opt in details of Cross Region Restore feature.",
+          "type": "boolean"
+        }
+      }
+    },
+    "CrrJobRequest": {
+      "description": "Request object for fetching CRR jobs.",
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "description": "Entire ARM resource id of the resource",
+          "type": "string"
+        },
+        "jobName": {
+          "description": "Job Name of the job to be fetched",
+          "type": "string"
+        }
+      }
+    },
+    "CrrJobRequestResource": {
+      "description": "Request object for fetching CRR jobs.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/CrrJobRequest",
+          "description": "CrrJobRequestResource properties"
+        }
+      }
+    },
+    "BackupResourceConfigResource": {
+      "description": "The resource storage details.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/BackupResourceConfig",
+          "description": "BackupResourceConfigResource properties"
+        }
+      }
+    },
+    "CrossRegionRestoreRequest": {
+      "type": "object",
+      "properties": {
+        "crossRegionRestoreAccessDetails": {
+          "$ref": "#/definitions/CrrAccessToken",
+          "description": "Access details for cross region restore"
+        },
+        "restoreRequest": {
+          "$ref": "#/definitions/RestoreRequest",
+          "description": "Request object for triggering restore"
+        }
+      }
+    },
+    "CrossRegionRestoreRequestResource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/CrossRegionRestoreRequest",
+          "description": "CrossRegionRestoreRequestResource properties"
+        }
+      }
+    },
+    "CrrAccessToken": {
+      "type": "object",
+      "required": [
+        "objectType"
+      ],
+      "properties": {
+        "objectType": {
+          "description": "Type of the specific object - used for deserializing",
+          "type": "string"
+        },
+        "accessTokenString": {
+          "description": "Access token used for authentication",
+          "type": "string"
+        },
+        "subscriptionId": {
+          "description": "Subscription Id of the source vault",
+          "type": "string"
+        },
+        "resourceGroupName": {
+          "description": "Resource Group name of the source vault",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Resource Name of the source vault",
+          "type": "string"
+        },
+        "resourceId": {
+          "description": "Resource Id of the source vault",
+          "type": "string"
+        },
+        "protectionContainerId": {
+          "format": "int64",
+          "description": "Protected item container id",
+          "type": "integer"
+        },
+        "recoveryPointId": {
+          "description": "Recovery Point Id",
+          "type": "string"
+        },
+        "recoveryPointTime": {
+          "description": "Recovery Point Time",
+          "type": "string"
+        },
+        "containerName": {
+          "description": "Container Unique name",
+          "type": "string"
+        },
+        "containerType": {
+          "description": "Container Type",
+          "type": "string"
+        },
+        "backupManagementType": {
+          "description": "Backup Management Type",
+          "type": "string"
+        },
+        "datasourceType": {
+          "description": "Datasource Type",
+          "type": "string"
+        },
+        "datasourceName": {
+          "description": "Datasource Friendly Name",
+          "type": "string"
+        },
+        "datasourceId": {
+          "description": "Datasource Id",
+          "type": "string"
+        },
+        "datasourceContainerName": {
+          "description": "Datasource Container Unique Name",
+          "type": "string"
+        },
+        "coordinatorServiceStampId": {
+          "description": "CoordinatorServiceStampId to be used by BCM in restore call",
+          "type": "string"
+        },
+        "coordinatorServiceStampUri": {
+          "description": "CoordinatorServiceStampUri to be used by BCM in restore call",
+          "type": "string"
+        },
+        "protectionServiceStampId": {
+          "description": "ProtectionServiceStampId to be used by BCM in restore call",
+          "type": "string"
+        },
+        "protectionServiceStampUri": {
+          "description": "ProtectionServiceStampUri to be used by BCM in restore call",
+          "type": "string"
+        },
+        "tokenExtendedInformation": {
+          "description": "Extended Information about the token like FileSpec etc.",
+          "type": "string"
+        },
+        "rpTierInformation": {
+          "description": "Recovery point Tier Information",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "rpOriginalSAOption": {
+          "description": "Recovery point information: Original SA option",
+          "type": "boolean"
+        },
+        "rpIsManagedVirtualMachine": {
+          "description": "Recovery point information: Managed virtual machine",
+          "type": "boolean"
+        },
+        "rpVMSizeDescription": {
+          "description": "Recovery point information: VM size description",
+          "type": "string"
+        },
+        "bMSActiveRegion": {
+          "description": "Active region name of BMS Stamp",
+          "type": "string"
+        }
+      },
+      "discriminator": "objectType"
+    },
+    "CrrAccessTokenResource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/CrrAccessToken",
+          "description": "CrrAccessTokenResource properties"
+        }
+      }
+    },
+    "OperationStatusRecoveryPointExtendedInfo": {
+      "description": "Operation status extended info for Updated Recovery Point.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/OperationStatusExtendedInfo"
+        }
+      ],
+      "properties": {
+        "updatedRecoveryPoint": {
+          "$ref": "#/definitions/RecoveryPoint",
+          "description": "Recovery Point info with updated source snapshot URI"
+        },
+        "deletedBackupItemVersion": {
+          "description": "In case the share is in soft-deleted state, populate this field with deleted backup item",
+          "type": "string"
+        }
+      },
+      "x-ms-discriminator-value": "OperationStatusRecoveryPointExtendedInfo"
+    },
+    "WorkloadCrrAccessToken": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CrrAccessToken"
+        }
+      ],
+      "properties": {
+        "protectableObjectUniqueName": {
+          "type": "string"
+        },
+        "protectableObjectFriendlyName": {
+          "type": "string"
+        },
+        "protectableObjectWorkloadType": {
+          "type": "string"
+        },
+        "protectableObjectProtectionState": {
+          "type": "string"
+        },
+        "protectableObjectContainerHostOsName": {
+          "type": "string"
+        },
+        "protectableObjectParentLogicalContainerName": {
+          "type": "string"
+        },
+        "containerId": {
+          "description": "Container Id",
+          "type": "string"
+        },
+        "policyName": {
+          "description": "Policy Name",
+          "type": "string"
+        },
+        "policyId": {
+          "description": "Policy Id",
+          "type": "string"
+        }
+      },
+      "x-ms-discriminator-value": "WorkloadCrrAccessToken"
     }
   },
   "parameters": {
@@ -9535,6 +10563,14 @@
       "description": "Client Api Version.",
       "required": true,
       "type": "string"
+    },
+    "AzureRegion": {
+      "name": "azureRegion",
+      "in": "path",
+      "description": "Azure region to hit Api",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
     }
   },
   "securityDefinitions": {
