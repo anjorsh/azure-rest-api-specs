@@ -70,8 +70,8 @@
                   "status": "Rehydrated",
                   "extendedInfo" : {
                     "RehydratedRPExpiryTime": "2020-12-21T22:48:25.4353958Z"
-                  },
-                },
+                  }
+                }
               ],
               "recoveryPointMoveReadinessInfo": {
                 "ArchivedRP": {
@@ -81,7 +81,10 @@
               },
               "isManagedVirtualMachine": true,
               "virtualMachineSize": "Standard_D1",
-              "originalStorageAccountOption": false
+              "originalStorageAccountOption": false,
+              "zones": [
+                "1"
+              ]
             }
           }
         ],
