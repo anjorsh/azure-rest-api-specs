@@ -18,7 +18,7 @@
     "application/json"
   ],
   "paths": {
-    "/Subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupPreValidateProtection": {
+    "/Subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServicesBVTD2/locations/{azureRegion}/backupPreValidateProtection": {
       "post": {
         "tags": [
           "ProtectionIntent"
@@ -63,7 +63,7 @@
         }
       }
     },
-    "/Subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupStatus": {
+    "/Subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServicesBVTD2/locations/{azureRegion}/backupStatus": {
       "post": {
         "tags": [
           "BackupStatus"
@@ -108,7 +108,7 @@
         }
       }
     },
-    "/Subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{azureRegion}/backupValidateFeatures": {
+    "/Subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServicesBVTD2/locations/{azureRegion}/backupValidateFeatures": {
       "post": {
         "tags": [
           "FeatureSupport"
@@ -153,7 +153,7 @@
         }
       }
     },
-    "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/backupProtectionIntent/{intentObjectName}": {
+    "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}/backupFabrics/{fabricName}/backupProtectionIntent/{intentObjectName}": {
       "get": {
         "tags": [
           "ProtectionIntent"
@@ -314,7 +314,7 @@
         }
       }
     },
-    "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupProtectionIntents": {
+    "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}/backupProtectionIntents": {
       "get": {
         "tags": [
           "BackupProtectionIntent"
@@ -371,7 +371,7 @@
         }
       }
     },
-    "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupUsageSummaries": {
+    "/Subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}/backupUsageSummaries": {
       "get": {
         "tags": [
           "BackupUsageSummaries"

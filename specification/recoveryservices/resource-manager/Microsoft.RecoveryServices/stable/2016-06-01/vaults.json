@@ -18,7 +18,7 @@
     "application/json"
   ],
   "paths": {
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateLinkResources": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}/privateLinkResources": {
       "get": {
         "tags": [
           "ListPrivateLinkResources"
@@ -62,7 +62,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateLinkResources/{privateLinkResourceName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}/privateLinkResources/{privateLinkResourceName}": {
       "get": {
         "tags": [
           "GetPrivateLinkResources"
@@ -108,7 +108,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/locations/{location}/checkNameAvailability": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/locations/{location}/checkNameAvailability": {
       "post": {
         "tags": [
           "RecoveryServices"
@@ -166,7 +166,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/vaults": {
+    "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServicesBVTD2/vaults": {
       "get": {
         "tags": [
           "Vaults"
@@ -204,7 +204,7 @@
         }
       }
     },
-    "/providers/Microsoft.RecoveryServices/operations": {
+    "/providers/Microsoft.RecoveryServicesBVTD2/operations": {
       "get": {
         "tags": [
           "Operations"
@@ -239,7 +239,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults": {
       "get": {
         "tags": [
           "Vaults"
@@ -280,7 +280,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}": {
       "get": {
         "tags": [
           "Vaults"
@@ -467,7 +467,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServicesBVTD2/vaults/{vaultName}/extendedInformation/vaultExtendedInfo": {
       "get": {
         "tags": [
           "VaultExtendedInfo"
@@ -614,7 +614,7 @@
       "type": "object",
       "properties": {
         "type": {
-          "description": "Describes the Resource type: Microsoft.RecoveryServices/Vaults",
+          "description": "Describes the Resource type: Microsoft.RecoveryServicesBVTD2/Vaults",
           "type": "string"
         },
         "name": {
@@ -1204,7 +1204,7 @@
           "readOnly": true
         },
         "type": {
-          "description": "e.g. Microsoft.RecoveryServices/vaults/privateLinkResources",
+          "description": "e.g. Microsoft.RecoveryServicesBVTD2/vaults/privateLinkResources",
           "readOnly": true,
           "type": "string"
         }
